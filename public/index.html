@@ -39,7 +39,13 @@
         </div>
             
         <div id="content">
-            <h2>Trajets</h2>
+            <h2>
+                Trajets
+                <a id="deleteAllIcon" href="#">
+                    <img alt="Vider la liste des trajets" src="img/bin.png" /></a>
+                <a id="deleteAll" href="#">
+                    vider</a>
+            </h2>
             <ul id="routeList">
                 <li>Aucun</li>
             </ul>
@@ -64,8 +70,11 @@
 		// Initialization
 		$(document).ready(function() {
             $.storage = new $.store();
-			// Add route
-			$("#add").click(addRoute);
+            // Add route
+            $("#add").click(addRoute);
+            // Delete all routes
+            $("#deleteAll").click(deleteAllRoutes);
+            $("#deleteAllIcon").click(deleteAllRoutes);
 			// Create the map
 			var myLatlng = new google.maps.LatLng(46.225453, 2.416992);
 			var myOptions = {

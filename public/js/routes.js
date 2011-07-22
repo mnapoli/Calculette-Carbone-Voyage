@@ -57,6 +57,28 @@ function addRoute(event)
 }
 
 /**
+ * Delete all the routes
+ * @return void
+ */
+function deleteAllRoutes()
+{
+    for (i in routes) {
+        if (routesDisplays[i] != null) {
+            routesDisplays[i].setMap(null);
+            routesDisplays[i] = null;
+        }
+    }
+    routes = [];
+    routesDisplays = [];
+    // Save
+    saveRoutes();
+    // Update
+    updateTotal();
+    updateDisplay();
+    return false;
+}
+
+/**
  * Delete the route
  * @param i Route index
  * @return void
@@ -74,6 +96,7 @@ function deleteRoute(i)
     // Update
     updateTotal();
     updateDisplay();
+    return false;
 }
 
 function saveRoutes()

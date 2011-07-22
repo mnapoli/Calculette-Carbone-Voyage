@@ -25,9 +25,23 @@ h2 {
     font-size: 1.4em;
     font-variant: small-caps;
 }
+h2 #deleteAll {
+    position: absolute;
+    right: 10px;
+    font-size: 0.7em;
+    font-variant: normal;
+    margin-top: 4px;
+}
+h2 #deleteAllIcon {
+    position: absolute;
+    right: 47px;
+}
 
 a {
     color: #AE855C;
+}
+a img {
+    text-decoration: none;
 }
 
 li {
