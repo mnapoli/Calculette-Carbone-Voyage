@@ -105,3 +105,11 @@ p.distance {
     font-weight: bold;
     font-size: 1.3em;
 }
+
+/*================================*/
+/*          Message Box           */
+/*================================*/
+
+#messagebox {
+    display: none;
+}

@@ -207,7 +207,8 @@ function processAndDisplayGMapDirections(route, indexRoute)
             // Update total
             updateTotal();
         } else {
-            console.error("Trajet non trouvé");
+            deleteRoute(indexRoute);
+            messageBox("Le trajet demandé ne peut être résolu.", MSGBOX_ERROR, "Erreur");
         }
     });
 }
