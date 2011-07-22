@@ -1,6 +1,20 @@
 /**
- * Routes
+ * @author Matthieu Napoli
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the Lesser GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  Lesser GNU General Public License for more details.
+ *
+ *  You should have received a copy of the Lesser GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 // Route type
 var enumRouteType = {
         "car": "car",
@@ -301,7 +315,7 @@ function updateTotal()
         totalEmissions += r.emission;
     }
     totalEmissions = totalEmissions / 1000.;
-    $("#totalEmission").html(totalEmissions.toFixed(2)+" kg");
+    $("#totalEmission").html(totalEmissions.toFixed(2)+" kg équivalent CO&#8322;");
 }
 
 /**
@@ -320,7 +334,7 @@ function updateDisplay() {
             +route.distance.toFixed(0)
             +'</span> km - Émissions : <span id="emissionRoute'+i+'">'
             +(route.emission / 1000.).toFixed(2)
-            +'</span> kg eq. CO2</p>';
+            +'</span> kg eq. CO&#8322;</p>';
         // Route type
         var routeType = ' <select id="addType">'
             +'<option value="car"'+((route.type=='car')?' selected="selected"':'')+'>Voiture</option>'

@@ -61,7 +61,7 @@
     
         <div id="total">
             <h2>Émission totale</h2>
-            <p id="totalEmission">0 kg</p>
+            <p id="totalEmission">0 kg équivalent CO&#8322;</p>
         </div>
     </div>
     </div>
@@ -77,7 +77,14 @@
 		
 		// Initialization
 		$(document).ready(function() {
+		    // Storage of the routes
             $.storage = new $.store();
+            if ($.storage.driver.scope != "browser") {
+                messageBox("Votre navigateur ne supporte pas l'enregistrement des données."
+                    +" Votre voyage sera donc perdu une fois que vous quitterez le site.");
+            }
+            // Jquery UI display
+            $("input:button").button();
             // Add route
             $("#add").click(addRoute);
             // Delete all routes
