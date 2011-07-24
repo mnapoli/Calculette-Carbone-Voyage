@@ -52,6 +52,22 @@ function addRoute(event)
     var start = $("#addStart").attr("value");
     var end = $("#addEnd").attr("value");
     var type = $("#addType").attr("value");
+    doAddRoute(start, end, type);
+    // Save
+    saveRoutes();
+    // Process and display
+    processAndDisplay(route, indexRoute);
+    updateDisplay();
+}
+
+/**
+ * Add route to the array
+ * @param start
+ * @param end
+ * @param type
+ */
+function doAddRoute(start, end, type)
+{
     var arraySize = routes.push({
         "start": start,
         "end": end,
@@ -63,11 +79,6 @@ function addRoute(event)
     });
     var indexRoute = arraySize - 1;
     var route = routes[indexRoute];
-    // Save
-    saveRoutes();
-    // Process and display
-    processAndDisplay(route, indexRoute);
-    updateDisplay();
 }
 
 /**
@@ -120,7 +131,20 @@ function saveRoutes()
 
 function loadRoutes()
 {
-    routes = $.storage.get('routes');
+    var paramValue = getParameterByName("routes");
+    // If in url
+    if (paramValue != "") {
+        routes = [];
+        array = eval("(" + paramValue + ")");
+        for each(r in array) {
+            doAddRoute(r.s, r.e, r.t);
+        }
+        // Save
+        saveRoutes();
+    } else {
+        // Else load from storage
+        routes = $.storage.get('routes');
+    }
     if (routes === null) {
         routes = [];
     } else {
@@ -129,6 +153,27 @@ function loadRoutes()
         }
         updateDisplay();
     }
+}
+
+/**
+ * Show a link to the routes
+ * @return void
+ */
+function showLink()
+{
+    var exportArray = [];
+    for (i in routes) {
+        exportArray.push({
+            "s": routes[i].start,
+            "e": routes[i].end,
+            "t": routes[i].type
+        });
+    }
+    var routesArg = encodeURIComponent(JSON.stringify(exportArray));
+    messageBox("http://" + window.location.host + window.location.pathname
+            + "?routes=" + routesArg,
+        "Lien vers ce voyage");
+    return false;
 }
 
 /**
@@ -222,7 +267,7 @@ function processAndDisplayGMapDirections(route, indexRoute)
             updateTotal();
         } else {
             deleteRoute(indexRoute);
-            messageBox("Le trajet demandé ne peut être résolu.", MSGBOX_ERROR, "Erreur");
+            messageBox("Le trajet demandé ne peut être résolu.", "Erreur", MSGBOX_ERROR);
         }
     });
 }

@@ -15,6 +15,7 @@
         src="jquery-ui-1.8.14.custom/js/jquery-ui-1.8.14.custom.min.js"></script>
     
     <script type="text/javascript" src="js/messagebox.js"></script>
+    <script type="text/javascript" src="js/misc.js"></script>
     <script type="text/javascript" src="js/routes.js"></script>
     
 	<title>Calculette Carbone Voyage</title>
@@ -49,10 +50,8 @@
         <div id="content">
             <h2>
                 Trajets
-                <a id="deleteAllIcon" href="#">
-                    <img alt="Vider la liste des trajets" src="img/bin.png" /></a>
-                <a id="deleteAll" href="#">
-                    vider</a>
+                <button id="routesClear" class="routesButtons">Vider</button>
+                <button id="routesLink" class="routesButtons">Lien</button>
             </h2>
             <ul id="routeList">
                 <li>Aucun</li>
@@ -85,11 +84,18 @@
             }
             // Jquery UI display
             $("input:button").button();
+            // Get routes as link
+            $("#routesLink").button({
+                icons: { primary: "ui-icon-link" }
+            });
+            $("#routesLink").click(showLink);
             // Add route
             $("#add").click(addRoute);
             // Delete all routes
-            $("#deleteAll").click(deleteAllRoutes);
-            $("#deleteAllIcon").click(deleteAllRoutes);
+            $("#routesClear").button({
+                icons: { primary: "ui-icon-trash" }
+            });
+            $("#routesClear").click(deleteAllRoutes);
 			// Create the map
 			var myLatlng = new google.maps.LatLng(46.225453, 2.416992);
 			var myOptions = {

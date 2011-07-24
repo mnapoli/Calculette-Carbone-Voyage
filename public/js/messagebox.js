@@ -2,19 +2,20 @@
 /**
  * Messagebox constants
  */
-const MSGBOX_ERROR = 0;
+const MSGBOX_NORMAL = 0;
 const MSGBOX_SUCCESS = 1;
+const MSGBOX_ERROR = 2;
 
 /**
  * Show a message box to the user
  * @param {String} message Message to display
- * @param {int} type Type of the message (MSGBOX_ERROR or MSGBOX_SUCCESS)
- * @param {String} title Title of the message box (default: "Information:")
+ * @param {int} type Type of the message (MSGBOX_NORMAL, MSGBOX_ERROR or MSGBOX_SUCCESS)
+ * @param {String} title Title of the message box (default: "Information")
  * @return void
  */
-function messageBox(message, type, title) {
+function messageBox(message, title, type) {
 	if (type === undefined) {
-		type = MSGBOX_ERROR;
+		type = MSGBOX_NORMAL;
 	}
 	if (title === undefined) {
 		title = "Information";
