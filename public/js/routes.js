@@ -52,7 +52,9 @@ function addRoute(event)
     var start = $("#addStart").attr("value");
     var end = $("#addEnd").attr("value");
     var type = $("#addType").attr("value");
-    doAddRoute(start, end, type);
+    var obj = doAddRoute(start, end, type);
+    indexRoute = obj.indexRoute;
+    route = obj.route;
     // Save
     saveRoutes();
     // Process and display
@@ -65,6 +67,7 @@ function addRoute(event)
  * @param start
  * @param end
  * @param type
+ * @returns {indexRoute:int index of the route, route: route}
  */
 function doAddRoute(start, end, type)
 {
@@ -79,6 +82,7 @@ function doAddRoute(start, end, type)
     });
     var indexRoute = arraySize - 1;
     var route = routes[indexRoute];
+    return {"indexRoute": indexRoute, "route": route};
 }
 
 /**
