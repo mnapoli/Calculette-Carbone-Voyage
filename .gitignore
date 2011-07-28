@@ -24,3 +24,5 @@ public/.DS_Store
 .settings/org.eclipse.wst.validation.prefs
 
 jquery-ui-1.8.14.custom.zip
+
+.settings/org.eclipse.php.ui.prefs

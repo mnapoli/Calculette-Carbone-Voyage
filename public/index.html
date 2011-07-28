@@ -17,10 +17,32 @@
     <script type="text/javascript" src="js/messagebox.js"></script>
     <script type="text/javascript" src="js/misc.js"></script>
     <script type="text/javascript" src="js/routes.js"></script>
+    <script type="text/javascript" src="js/routeDisplay.js"></script>
     
 	<title>Calculette Carbone Voyage</title>
 </head>
 <body>
+
+    <script type="text/javascript">
+    /**
+     * @author Matthieu Napoli
+     * 
+     * This file is part of the program "Calculette Carbone Voyage"
+     * 
+     *  This program is free software: you can redistribute it and/or modify
+     *  it under the terms of the Lesser GNU General Public License as published by
+     *  the Free Software Foundation, either version 3 of the License, or
+     *  any later version.
+     *
+     *  This program is distributed in the hope that it will be useful,
+     *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+     *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+     *  Lesser GNU General Public License for more details.
+     *
+     *  You should have received a copy of the Lesser GNU General Public License
+     *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+     */
+    </script>
 
     <div id="messagebox"></div>
 
@@ -99,8 +121,6 @@
 			// Create the map
 			var myLatlng = new google.maps.LatLng(46.225453, 2.416992);
 			var myOptions = {
-				zoom: 5,
-				center: myLatlng,
 				mapTypeId: google.maps.MapTypeId.TERRAIN
 			};
 			map = new google.maps.Map(document.getElementById("map"), myOptions);
