@@ -46,13 +46,40 @@
 
     <div id="messagebox"></div>
 
-	<div id="map">Javascript doit être activé</div>
+    <div id="menu">
+        <h1>Calculette carbone voyage</h1>
+        <a href="#" id="userGuideLink" title="Aide utilisateur de la calculette carbone voyage">
+            Aide utilisateur</a>
+        <a href="#" id="computingDetailsLink"
+            title="Détails des calculs de la calculette carbone voyage">
+            Détails des calculs</a>
+        <a href="#" id="aboutLink" title="À propos de la calculette carbone voyage">
+            À propos</a>
+    </div>
+
+    <div id="userGuide">
+        <p>
+            Aide utilisateur en cours de rédaction.
+        </p>
+    </div>
+
+    <div id="computingDetails">
+        <p>
+            Article en cours de rédaction.
+        </p>
+    </div>
+
+    <div id="about">
+        <p>
+            Article en cours de rédaction.
+        </p>
+    </div>
+    
+    <div id="map">Javascript doit être activé</div>
 
     <div id="base">
     <div id="baseRelative">
         <div id="header">
-            <h1>Calculette Carbone Voyage</h1>
-    
             <h2>Ajouter un trajet</h2>
             <p>
                 Départ : <input id="addStart" type="text" />
@@ -98,6 +125,39 @@
 		
 		// Initialization
 		$(document).ready(function() {
+            // User guide
+            $("#userGuideLink").click(function() {
+                $("#userGuide").dialog({
+                    title: "Aide utilisateur de la calculette voyage",
+                    show: "fade",
+                    hide: "fade",
+                    modal: true,
+                    minWidth: 600
+                });
+                return false;
+            });
+            // Computing details
+            $("#computingDetailsLink").click(function() {
+                $("#computingDetails").dialog({
+                    title: "Détails des calculs de la calculette voyage",
+                    show: "fade",
+                    hide: "fade",
+                    modal: true,
+                    minWidth: 600
+                });
+                return false;
+            });
+            // About
+            $("#aboutLink").click(function() {
+                $("#about").dialog({
+                    title: "À propos de la calculette voyage",
+                    show: "fade",
+                    hide: "fade",
+                    modal: true,
+                    minWidth: 600
+                });
+                return false;
+            });
 		    // Storage of the routes
             $.storage = new $.store();
             if ($.storage.driver.scope != "browser") {

@@ -219,7 +219,7 @@ function updateDisplay() {
     for (i in routes) {
         route = routes[i];
         // Delete link
-        var deleteLink = ' (<a href="#" onclick="deleteRoute('+i+')">supprimer</a>)';
+        var deleteLink = ' - <a href="#" onclick="deleteRoute('+i+')">supprimer</a>';
         // Distance field
         var distanceField = ' <p class="distance">Distance : <span id="distanceRoute'+i+'">'
             +route.distance.toFixed(0)

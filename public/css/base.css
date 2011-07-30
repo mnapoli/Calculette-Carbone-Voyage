@@ -63,10 +63,48 @@ li {
     list-style: disc outside;
 }
 
+#menu {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 30px;
+    background-color: #93B876;
+    color: white;
+    font-size: 13px;    
+}
+#menu h1 {
+    position: absolute;
+    font-weight: normal;
+    font-size: 27px;
+    right: 0;
+    margin-right: 2px;
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+#menu a {
+    display: block;
+    height: 30px;
+    float: left;
+    padding-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    text-decoration: none;
+}
+#menu a:hover {
+    background-color: grey;
+}
+
+#userGuide {
+    display: none;
+}
+
 #map {
     position: absolute;
     width: 50%;
-    top: 0;
+    top: 30px;
     bottom: 0;
     left: 0;
 }
@@ -74,7 +112,7 @@ li {
     position: absolute;
     left: 50%;
     right: 0;
-    top: 0;
+    top: 20px;
     bottom: 0;
     padding: 15px 30px;
 }
@@ -92,7 +130,7 @@ li {
 #content {
     position: absolute;
     overflow-y: scroll;
-    top: 200px;
+    top: 120px;
     bottom: 100px;
     width: 100%;
 }
