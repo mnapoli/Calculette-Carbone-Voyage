@@ -29,11 +29,11 @@ var enumRouteType = {
 };
 // Emission factors
 var enumEmission = {
-        "car": 129.62,
-        "plane": 160.,
-        "train": 14.62,
-        "coach": 30.,
-        "bus": 33.4,
+        "car": 255.97,
+        "plane": 388.51,
+        "train": 37.49,
+        "coach": 1204.13,
+        "bus": 1279.3,
         "bike": 0.,
         "walking": 0.
 };
