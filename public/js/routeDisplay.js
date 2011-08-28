@@ -25,6 +25,7 @@
  */
 function processAndDisplay(route, indexRoute)
 {
+    getRouteCoordinates(route, indexRoute);
     switch (route.type) {
         case enumRouteType.car:
         case enumRouteType.walking:
@@ -43,6 +44,54 @@ function processAndDisplay(route, indexRoute)
             console.error("Unknown route type : "+route.type);
             return;
     }
+}
+
+/**
+ * Get route point coordinates
+ * @param route
+ * @param indexRoute
+ * @return void
+ */
+function getRouteCoordinates(route, indexRoute)
+{
+    // Geocoding for start
+    geocoder.geocode({
+        'address': route.start
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            route.startLatLng = {
+                "lat": results[0].geometry.location.lat(),
+                "lng": results[0].geometry.location.lng()
+            };
+            // Save
+            saveRoutes();
+            if (route.startLatLng != null && route.endLatLng != null) {
+                // Update map viewport
+                updateMapViewport();
+            }
+        } else {
+            console.error("Geocoding was not successful: " + status);
+        }
+    });
+    // Geocoding for end
+    geocoder.geocode({
+        'address': route.end
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            route.endLatLng = {
+                    "lat": results[0].geometry.location.lat(),
+                    "lng": results[0].geometry.location.lng()
+            };
+            // Save
+            saveRoutes();
+            if (route.startLatLng != null && route.endLatLng != null) {
+                // Update map viewport
+                updateMapViewport();
+            }
+        } else {
+            console.error("Geocoding was not successful: " + status);
+        }
+    });
 }
 
 /**
