@@ -157,10 +157,19 @@ p.distance {
     font-size: 1.3em;
 }
 
+#about {
+    display: none;
+}
+
 /*================================*/
 /*          Message Box           */
 /*================================*/
 
 #messagebox {
     display: none;
+}
+
+.ui-dialog-content p {
+    margin: 15px 0px;
+    line-height: 1.3em;
 }

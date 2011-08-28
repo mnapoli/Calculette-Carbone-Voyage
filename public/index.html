@@ -71,7 +71,20 @@
 
     <div id="about">
         <p>
-            Article en cours de rédaction.
+            L’application Calculette Carbone Voyage permet de comparer l’impact
+            environnemental d’un voyage en fonction des types de véhicules utilisés.
+        </p>
+        <p>
+            L’innovation consiste en la visualisation du trajet via Google Maps.
+            Nous proposons une interface agréable pour traiter le domaine
+            du transport qui soulève beaucoup de questions.
+        </p>
+        <p>
+            Vous pourrez trouver le détail des facteurs d’émission utilisés
+            ainsi que des calculs réalisés sur cette même page.
+            Pour toute question, n’hésitez pas à nous contacter sur
+            <a href="http://chiffres-carbone.fr/" title="Chiffres carbone">
+                chiffres-carbone.fr</a>.
         </p>
     </div>
     
@@ -128,7 +141,7 @@
             // User guide
             $("#userGuideLink").click(function() {
                 $("#userGuide").dialog({
-                    title: "Aide utilisateur de la calculette voyage",
+                    title: "Aide utilisateur de la calculette carbone voyage",
                     show: "fade",
                     hide: "fade",
                     modal: true,
@@ -139,7 +152,7 @@
             // Computing details
             $("#computingDetailsLink").click(function() {
                 $("#computingDetails").dialog({
-                    title: "Détails des calculs de la calculette voyage",
+                    title: "Détails des calculs de la calculette carbone voyage",
                     show: "fade",
                     hide: "fade",
                     modal: true,
@@ -150,7 +163,7 @@
             // About
             $("#aboutLink").click(function() {
                 $("#about").dialog({
-                    title: "À propos de la calculette voyage",
+                    title: "À propos de la calculette carbone voyage",
                     show: "fade",
                     hide: "fade",
                     modal: true,
@@ -191,6 +204,19 @@
 		});
 		
 	</script>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-15584647-7']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www')
+                + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
 	
 </body>
 
