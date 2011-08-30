@@ -19,23 +19,25 @@
 
 // Route type
 var enumRouteType = {
-        "car": "car",
-        "plane": "plane",
-        "train": "train",
-        "coach": "coach",
-        "bus": "bus",
-        "bike": "bike",
-        "walking": "walking"
+    "car": "car",
+    "motorbike": "motorbike",
+    "plane": "plane",
+    "train": "train",
+    "coach": "coach",
+    "bus": "bus",
+    "bike": "bike",
+    "walking": "walking"
 };
 // Emission factors
 var enumEmission = {
-        "car": 255.97,
-        "plane": 388.51,
-        "train": 37.49,
-        "coach": 1204.13,
-        "bus": 1279.3,
-        "bike": 0.,
-        "walking": 0.
+    "car": 255.97,
+    "motorbike": 144.69,
+    "plane": 388.51,
+    "train": 37.49,
+    "coach": 1204.13,
+    "bus": 1279.3,
+    "bike": 0.,
+    "walking": 0.
 };
 
 /**
@@ -163,7 +165,8 @@ function loadRoutes()
     if (paramValue != "") {
         routes = [];
         array = eval("(" + paramValue + ")");
-        for each(r in array) {
+        for (i in array) {
+            r = array[i];
             doAddRoute(r.s, r.e, r.t);
         }
         // Save

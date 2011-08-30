@@ -28,6 +28,7 @@ function processAndDisplay(route, indexRoute)
     getRouteCoordinates(route, indexRoute);
     switch (route.type) {
         case enumRouteType.car:
+        case enumRouteType.motorbike:
         case enumRouteType.walking:
         case enumRouteType.bike:
         case enumRouteType.bus:
@@ -105,6 +106,7 @@ function processAndDisplayGMapDirections(route, indexRoute)
     var travelMode;
     switch (route.type) {
         case enumRouteType.car:
+        case enumRouteType.motorbike:
         case enumRouteType.bus:
         case enumRouteType.coach:
         case enumRouteType.train:
@@ -251,7 +253,8 @@ function processAndDisplayAerialDistance(route, indexRoute)
 function updateTotal()
 {
     var totalEmissions = 0.;
-    for each(r in routes) {
+    for (i in routes) {
+        r = routes[i];
         totalEmissions += r.emission;
     }
     totalEmissions = totalEmissions / 1000.;
@@ -278,6 +281,7 @@ function updateDisplay() {
         // Route type
         var routeType = ' <select id="updateTypeRoute'+i+'" onchange="changeRoute('+i+')">'
             +'<option value="car"'+((route.type=='car')?' selected="selected"':'')+'>Voiture</option>'
+            +'<option value="motorbike"'+((route.type=='motorbike')?' selected="selected"':'')+'>Moto</option>'
             +'<option value="plane"'+((route.type=='plane')?' selected="selected"':'')+'>Avion</option>'
             +'<option value="train"'+((route.type=='train')?' selected="selected"':'')+'>Train</option>'
             +'<option value="coach"'+((route.type=='coach')?' selected="selected"':'')+'>Autocar</option>'
