@@ -161,6 +161,10 @@ p.distance {
     display: none;
 }
 
+#userGuide {
+    display: none;
+}
+
 /*================================*/
 /*          Message Box           */
 /*================================*/

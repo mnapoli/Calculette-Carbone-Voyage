@@ -53,7 +53,7 @@
             <strong>Chiffres-carbone.fr</strong></a>
         <a href="#" id="userGuideLink" title="Aide utilisateur de la calculette carbone voyage">
             Aide utilisateur</a>
-        <a href="#" id="computingDetailsLink"
+        <a href="http://chiffres-carbone.fr/facteurs-emission-calculette-voyage/"
             title="Détails des calculs de la calculette carbone voyage">
             Détails des calculs</a>
         <a href="#" id="aboutLink" title="À propos de la calculette carbone voyage">
@@ -63,12 +63,6 @@
     <div id="userGuide">
         <p>
             Aide utilisateur en cours de rédaction.
-        </p>
-    </div>
-
-    <div id="computingDetails">
-        <p>
-            Article en cours de rédaction.
         </p>
     </div>
 
@@ -146,17 +140,6 @@
             $("#userGuideLink").click(function() {
                 $("#userGuide").dialog({
                     title: "Aide utilisateur de la calculette carbone voyage",
-                    show: "fade",
-                    hide: "fade",
-                    modal: true,
-                    minWidth: 600
-                });
-                return false;
-            });
-            // Computing details
-            $("#computingDetailsLink").click(function() {
-                $("#computingDetails").dialog({
-                    title: "Détails des calculs de la calculette carbone voyage",
                     show: "fade",
                     hide: "fade",
                     modal: true,
