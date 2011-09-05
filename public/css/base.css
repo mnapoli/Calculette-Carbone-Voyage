@@ -175,6 +175,8 @@ p.distance {
 .updateTypeRoute {
     float: right;
     font-size: 0.8em;
+    margin-right: 5px;
+    margin-top: 2px;
 }
 
 .routeButton {
