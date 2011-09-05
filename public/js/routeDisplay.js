@@ -271,7 +271,7 @@ function updateDisplay() {
     for (i in routes) {
         route = routes[i];
         // Delete link
-        var deleteLink = ' - <a href="#" onclick="deleteRoute('+i+')">supprimer</a>';
+        var deleteLink = ' <button class="routeButton" onclick="deleteRoute('+i+')">Supprimer</button>';
         // Distance field
         var distanceField = ' <p class="distance">Distance : <span id="distanceRoute'+i+'">'
             +route.distance.toFixed(0)
@@ -279,7 +279,7 @@ function updateDisplay() {
             +(route.emission / 1000.).toFixed(2)
             +'</span> kg eq. CO&#8322;</p>';
         // Route type
-        var routeType = ' <select id="updateTypeRoute'+i+'" onchange="changeRoute('+i+')">'
+        var routeType = ' <select id="updateTypeRoute'+i+'" class="updateTypeRoute" onchange="changeRoute('+i+')">'
             +'<option value="car"'+((route.type=='car')?' selected="selected"':'')+'>Voiture</option>'
             +'<option value="motorbike"'+((route.type=='motorbike')?' selected="selected"':'')+'>Moto</option>'
             +'<option value="plane"'+((route.type=='plane')?' selected="selected"':'')+'>Avion</option>'
@@ -290,8 +290,12 @@ function updateDisplay() {
             +'<option value="walking"'+((route.type=='walking')?' selected="selected"':'')+'>Marche à pied</option>'
             +'</select> ';
         // Set html
-        $("#routeList").append("<li class=\"route\">"+route.start+" - "+route.end
-            +routeType+deleteLink+distanceField+"</li>");
+        $("#routeList").append("<li class=\"route\"><strong>"+route.start+" - "+route.end+"</strong>"
+            +deleteLink+routeType+distanceField+"</li>");
+        // Enable button
+        $(".routeButton").button({
+            icons: { primary: "ui-icon-trash", text: false }
+        });
     }
 }
 

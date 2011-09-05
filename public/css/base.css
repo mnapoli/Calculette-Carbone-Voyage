@@ -172,6 +172,16 @@ p.distance {
     width: 100%;
 }
 
+.updateTypeRoute {
+    float: right;
+    font-size: 0.8em;
+}
+
+.routeButton {
+    float: right;
+    font-size: 9px !important;
+}
+
 /*================================*/
 /*          Message Box           */
 /*================================*/
