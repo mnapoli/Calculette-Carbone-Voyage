@@ -202,8 +202,21 @@ function showLink()
         });
     }
     var routesArg = encodeURIComponent(JSON.stringify(exportArray));
-    messageBox("http://" + window.location.host + window.location.pathname
-            + "?routes=" + routesArg,
-        "Lien vers ce voyage");
+    var url = "http://" + window.location.host + window.location.pathname
+        + "?routes=" + routesArg;
+    $("input#tripUrl").attr('value', url);
+    var facebookUrl = "http://www.facebook.com/share.php?u="+url;
+    $("#tripUrlShareFacebook").attr('href', facebookUrl);
+    $("#tripUrlDialog").dialog({
+        title: "Lien vers votre voyage",
+        show: "fade",
+        hide: "fade"
+    });
+    $("input#tripUrl").click(function() {
+        $("input#tripUrl").focus();
+        $("input#tripUrl").select();
+    });
+    $("input#tripUrl").focus();
+    $("input#tripUrl").select();
     return false;
 }

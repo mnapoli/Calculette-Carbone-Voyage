@@ -165,6 +165,13 @@ p.distance {
     display: none;
 }
 
+#tripUrlDialog {
+    display: none;
+}
+#tripUrlDialog #tripUrl {
+    width: 100%;
+}
+
 /*================================*/
 /*          Message Box           */
 /*================================*/
