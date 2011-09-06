@@ -277,7 +277,7 @@ function updateDisplay() {
             +route.distance.toFixed(0)
             +'</span> km - Émissions : <span id="emissionRoute'+i+'">'
             +(route.emission / 1000.).toFixed(2)
-            +'</span> kg eq. CO&#8322;</p>';
+            +'</span>&nbsp;kg&nbsp;eq.&nbsp;CO&#8322;</p>';
         // Route type
         var routeType = ' <select id="updateTypeRoute'+i+'" class="updateTypeRoute" onchange="changeRoute('+i+')">'
             +'<option value="car"'+((route.type=='car')?' selected="selected"':'')+'>Voiture</option>'
