@@ -134,20 +134,39 @@
     <div id="baseRelative">
         <div id="header">
             <h2>Ajouter un trajet</h2>
-            <p>
-                Départ : <input id="addStart" type="text" />
-                Arrivée : <input id="addEnd" type="text" />
-                <select id="addType">
-                    <option value="car">Voiture</option>
-                    <option value="motorbike">Moto</option>
-                    <option value="plane">Avion</option>
-                    <option value="train">Train</option>
-                    <option value="coach">Autocar</option>
-                    <option value="bus">Bus</option>
-                    <option value="bike">Vélo</option>
-                    <option value="walking">Marche à pied</option>
-                </select> <input id="add" type="button" value="Ajouter" />
-            </p>
+            <table id="addRoute">
+                <tr>
+                    <td>
+                        Départ :
+                    </td>
+                    <td>
+                        <input id="addStart" type="text" tabindex="1" />
+                    </td>
+                    <td rowspan="2">
+                        <select id="addType" tabindex="3">
+                            <option value="car">Voiture</option>
+                            <option value="motorbike">Moto</option>
+                            <option value="plane">Avion</option>
+                            <option value="train">Train</option>
+                            <option value="coach">Autocar</option>
+                            <option value="bus">Bus</option>
+                            <option value="bike">Vélo</option>
+                            <option value="walking">Marche à pied</option>
+                        </select>
+                    </td>
+                    <td rowspan="2">
+                        <input id="add" type="button" value="Ajouter" tabindex="4" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Arrivée :
+                    </td>
+                    <td>
+                        <input id="addEnd" type="text" tabindex="2" />
+                    </td>
+                </tr>
+            </table>
         </div>
             
         <div id="content">

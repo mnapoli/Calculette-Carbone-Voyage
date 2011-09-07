@@ -209,6 +209,11 @@ p.distance {
     margin-top: 4px;
 }
 
+table#addRoute td {
+    vertical-align: middle;
+    padding: 3px;
+}
+
 /*================================*/
 /*          Message Box           */
 /*================================*/
