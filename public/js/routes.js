@@ -30,14 +30,25 @@ var enumRouteType = {
 };
 // Emission factors
 var enumEmission = {
-    "car": 255.97,
+    "car"      : 255.97,
     "motorbike": 144.69,
-    "plane": 388.51,
-    "train": 37.49,
-    "coach": 1204.13,
-    "bus": 1279.3,
-    "bike": 0.,
-    "walking": 0.
+    "plane"    : 388.51,
+    "train"    : 37.49,
+    "coach"    : 1204.13,
+    "bus"      : 1279.3,
+    "bike"     : 0.,
+    "walking"  : 0.
+};
+// Enable number of passengers
+var enumEnableNumberOfPassengers = {
+    "car"      : true,
+    "motorbike": true,
+    "plane"    : false,
+    "train"    : false,
+    "coach"    : false,
+    "bus"      : false,
+    "bike"     : false,
+    "walking"  : false
 };
 
 /**
@@ -56,7 +67,8 @@ function addRoute(event)
     var start = $("#addStart").attr("value");
     var end = $("#addEnd").attr("value");
     var type = $("#addType").attr("value");
-    var obj = doAddRoute(start, end, type);
+    var nbPassengers = 1;
+    var obj = doAddRoute(start, end, type, nbPassengers);
     indexRoute = obj.indexRoute;
     route = obj.route;
     // Save
@@ -71,9 +83,10 @@ function addRoute(event)
  * @param start
  * @param end
  * @param type
+ * @param nbPassengers
  * @returns {indexRoute:int index of the route, route: route}
  */
-function doAddRoute(start, end, type)
+function doAddRoute(start, end, type, nbPassengers)
 {
     var arraySize = routes.push({
         "start": start,
@@ -82,7 +95,8 @@ function doAddRoute(start, end, type)
         "emission": 0.,
         "type": type,
         "startLatLng": null,
-        "endLatLng": null
+        "endLatLng": null,
+        "nbPassengers": nbPassengers
     });
     var indexRoute = arraySize - 1;
     var route = routes[indexRoute];
@@ -92,13 +106,15 @@ function doAddRoute(start, end, type)
 /**
  * Change route callback
  * @param i route index
- * @return void
+ * @returns void
  */
 function changeRoute(i)
 {
     var type = $("#updateTypeRoute"+i).attr("value");
     route = routes[i];
     route.type = type;
+    // Reset nb of passengers
+    route.nbPassengers = 1;
     // Save
     saveRoutes();
     // Process and display
@@ -107,8 +123,57 @@ function changeRoute(i)
 }
 
 /**
+ * Change nb passengers callback
+ * @param i route index
+ * @returns void
+ */
+function changeNbPassengers(i)
+{
+    var nbPassengers = $("#updateNbPassengers"+i).attr("value");
+    if (nbPassengers <= 0 || nbPassengers > 5) {
+        $("#updateNbPassengers"+i).attr("value", 1);
+        nbPassengers = 1;
+    }
+    route = routes[i];
+    route.nbPassengers = nbPassengers;
+    // Save
+    saveRoutes();
+    // Process and display
+    processAndDisplay(route, i);
+    updateDisplay();
+}
+
+/**
+ * Add passenger callback
+ * @param i route index
+ * @returns void
+ */
+function addPassenger(i)
+{
+    var nbPassengers = parseInt($("#updateNbPassengers"+i).attr("value"));
+    if (nbPassengers < 5) {
+        $("#updateNbPassengers"+i).attr("value", nbPassengers + 1);
+        changeNbPassengers(i);
+    }
+}
+
+/**
+ * Remove passenger callback
+ * @param i route index
+ * @returns void
+ */
+function removePassenger(i)
+{
+    var nbPassengers = parseInt($("#updateNbPassengers"+i).attr("value"));
+    if (nbPassengers > 1) {
+        $("#updateNbPassengers"+i).attr("value", nbPassengers - 1);
+        changeNbPassengers(i);
+    }
+}
+
+/**
  * Delete all the routes
- * @return void
+ * @returns void
  */
 function deleteAllRoutes()
 {
@@ -167,13 +232,30 @@ function loadRoutes()
         array = eval("(" + paramValue + ")");
         for (i in array) {
             r = array[i];
-            doAddRoute(r.s, r.e, r.t);
+            if (r.n > 0) {
+                doAddRoute(r.s, r.e, r.t, r.n);
+            } else {
+                doAddRoute(r.s, r.e, r.t, 1);
+            }
         }
         // Save
         saveRoutes();
     } else {
         // Else load from storage
         routes = $.storage.get('routes');
+        // Detect compatibility break
+        var compatibilityBreak = false;
+        for (i in routes) {
+            if (! routes[i].nbPassengers > 0) {
+                compatibilityBreak = true;
+            }
+        }
+        if (compatibilityBreak) {
+            deleteAllRoutes();
+            saveRoutes();
+            loadRoutes();
+            return;
+        }
     }
     if (routes === null) {
         routes = [];
@@ -198,7 +280,8 @@ function showLink()
         exportArray.push({
             "s": routes[i].start,
             "e": routes[i].end,
-            "t": routes[i].type
+            "t": routes[i].type,
+            "n": routes[i].nbPassengers
         });
     }
     var routesArg = encodeURIComponent(JSON.stringify(exportArray));

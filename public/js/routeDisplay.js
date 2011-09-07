@@ -21,7 +21,7 @@
  * Process and display the route
  * @param route
  * @param indexRoute
- * @return void
+ * @returns void
  */
 function processAndDisplay(route, indexRoute)
 {
@@ -51,7 +51,7 @@ function processAndDisplay(route, indexRoute)
  * Get route point coordinates
  * @param route
  * @param indexRoute
- * @return void
+ * @returns void
  */
 function getRouteCoordinates(route, indexRoute)
 {
@@ -99,7 +99,7 @@ function getRouteCoordinates(route, indexRoute)
  * Process and display the route using GMap Directions
  * @param route
  * @param indexRoute
- * @return void
+ * @returns void
  */
 function processAndDisplayGMapDirections(route, indexRoute)
 {
@@ -150,7 +150,7 @@ function processAndDisplayGMapDirections(route, indexRoute)
             // Distance in km
             route.distance = distance / 1000.;
             // Calculate emissions
-            route.emission = route.distance * enumEmission[route.type];
+            route.emission = route.distance * enumEmission[route.type] / route.nbPassengers;
             // Display infos
             $("#distanceRoute"+indexRoute).html(route.distance.toFixed(0));
             $("#emissionRoute"+indexRoute).html((route.emission / 1000.).toFixed(2));
@@ -184,7 +184,7 @@ function processAndDisplayAerialDistance(route, indexRoute)
         // Distance in km
         route.distance = distance / 1000.;
         // Calculate emissions
-        route.emission = route.distance * enumEmission[route.type];
+        route.emission = route.distance * enumEmission[route.type] / route.nbPassengers;
         // Display infos
         $("#distanceRoute"+indexRoute).html(route.distance.toFixed(0));
         $("#emissionRoute"+indexRoute).html((route.emission / 1000.).toFixed(2));
@@ -248,7 +248,7 @@ function processAndDisplayAerialDistance(route, indexRoute)
 
 /**
  * Update total emission
- * @return void
+ * @returns void
  */
 function updateTotal()
 {
@@ -263,21 +263,30 @@ function updateTotal()
 
 /**
  * Update the list of routes
- * @return void
+ * @returns void
  */
 function updateDisplay() {
     // Route list
     $("#routeList").empty();
     for (i in routes) {
         route = routes[i];
-        // Delete link
-        var deleteLink = ' <button class="routeButton" onclick="deleteRoute('+i+')">Supprimer</button>';
         // Distance field
         var distanceField = ' <p class="distance">Distance : <span id="distanceRoute'+i+'">'
             +route.distance.toFixed(0)
             +'</span> km - Émissions : <span id="emissionRoute'+i+'">'
             +(route.emission / 1000.).toFixed(2)
             +'</span>&nbsp;kg&nbsp;eq.&nbsp;CO&#8322;</p>';
+        // Number of passengers
+        if (enumEnableNumberOfPassengers[route.type]) {
+            var nbPassengers = ' <span class="updateNbPassengers">Passagers : <input type="text" '
+                +'id="updateNbPassengers'+i+'" onchange="changeNbPassengers('+i+')" '
+                +'value="'+route.nbPassengers+'">'
+                +'<button class="addPassengerButton" onclick="addPassenger('+i+')">Ajouter un passager</button>'
+                +'<button class="removePassengerButton" onclick="removePassenger('+i+')">Supprimer un passager</button>'
+                +'</span>';
+        } else {
+            var nbPassengers = '';
+        }
         // Route type
         var routeType = ' <select id="updateTypeRoute'+i+'" class="updateTypeRoute" onchange="changeRoute('+i+')">'
             +'<option value="car"'+((route.type=='car')?' selected="selected"':'')+'>Voiture</option>'
@@ -289,12 +298,23 @@ function updateDisplay() {
             +'<option value="bike"'+((route.type=='bike')?' selected="selected"':'')+'>Vélo</option>'
             +'<option value="walking"'+((route.type=='walking')?' selected="selected"':'')+'>Marche à pied</option>'
             +'</select> ';
+        // Delete link
+        var deleteLink = ' <button class="deleteRouteButton" onclick="deleteRoute('+i+')">Supprimer ce trajet</button>';
         // Set html
         $("#routeList").append("<li class=\"route\"><strong>"+route.start+" - "+route.end+"</strong>"
-            +deleteLink+routeType+distanceField+"</li>");
-        // Enable button
-        $(".routeButton").button({
-            icons: { primary: "ui-icon-trash", text: false }
+            +deleteLink+routeType+nbPassengers+distanceField+"</li>");
+        // Enable buttons
+        $(".deleteRouteButton").button({
+            icons: { primary: "ui-icon-trash" },
+            text: false
+        });
+        $(".addPassengerButton").button({
+            icons: { primary: "ui-icon-plus" },
+            text: false
+        });
+        $(".removePassengerButton").button({
+            icons: { primary: "ui-icon-minus" },
+            text: false
         });
     }
 }
