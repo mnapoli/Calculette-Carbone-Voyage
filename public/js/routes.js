@@ -34,8 +34,8 @@ var enumEmission = {
     "motorbike": 144.69,
     "plane"    : 388.51,
     "train"    : 37.49,
-    "coach"    : 1204.13,
-    "bus"      : 1279.3,
+    "coach"    : 39.97,
+    "bus"      : 88.37,
     "bike"     : 0.,
     "walking"  : 0.
 };
