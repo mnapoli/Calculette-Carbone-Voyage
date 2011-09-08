@@ -301,8 +301,11 @@ function updateDisplay() {
         // Delete link
         var deleteLink = ' <button class="deleteRouteButton" onclick="deleteRoute('+i+')">Supprimer ce trajet</button>';
         // Set html
-        $("#routeList").append("<li class=\"route\"><strong>"+route.start+" - "+route.end+"</strong>"
-            +deleteLink+routeType+nbPassengers+distanceField+"</li>");
+        $("#routeList").append("<li class=\"route\">"
+            +deleteLink+routeType+nbPassengers
+            +"<strong>"+route.start+" - "+route.end+"</strong>"
+            +distanceField
+            +"</li>");
         // Enable buttons
         $(".deleteRouteButton").button({
             icons: { primary: "ui-icon-trash" },
