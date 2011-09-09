@@ -92,9 +92,16 @@ li {
     padding-right: 10px;
     color: white;
     text-decoration: none;
+    border-left: solid 1px #E3EBDD;
+}
+#menu a.first {
+    border-left: none;
 }
 #menu a:hover {
     background-color: grey;
+}
+#menu a.share {
+    border-left: none;
 }
 
 #userGuide {
